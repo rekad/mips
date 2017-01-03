@@ -1,17 +1,16 @@
-
 .text
 
 # a0: current character address
 # t1: current character
-binary_convert:
+octal_convert:
         add     $v0, $zero, $zero       # initialize result with 0
 Loop:
         # load character
         lb      $t1, 0($a0)
         # if encounter NULL char exit
         beq     $t1, $zero, Exit
-        # multiply result with 2
-        sll     $v0, $v0, 1
+        # multiply result with 8
+        sll     $v0, $v0, 3
         # convert current character to number
         addi    $t1, $t1, -48
         # add number to result (number is either 1 or 0)
