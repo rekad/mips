@@ -14,10 +14,7 @@ scrabble_score:
 loop:
         lb      $t1, 0($a0)             # load current char
         beq     $t1, $zero, exit        # exit when encountering NULL
-
-        bgt     $t1, 96, is_lowercase
-        addi    $t1, $t1, 32            # convert to lowercase
-is_lowercase:
+        or      $t1, $t1, 0x20          # convert to lowercase
         add     $t2, $t1, -97           # calculate offset of char in alphabet
         sll     $t2, $t2, 2             # get offset in bytes
         add     $t3, $t0, $t2           # get score address
